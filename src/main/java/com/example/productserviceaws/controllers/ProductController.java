@@ -16,9 +16,15 @@ public class ProductController {
 
     ProductService productService;
 
+    // Uncomment the below method if you want to inject FakeStoreProductService instead of SelfProductService (to test Redis cache implementation)
     public ProductController(@Qualifier("SelfProductService") ProductService productService) {
         this.productService = productService;
     }
+
+    // Uncomment the below method if you want to inject FakeStoreProductService instead of SelfProductService (to test Redis cache implementation)
+    /*public ProductController(@Qualifier("FakeStoreProductService") ProductService productService) {
+        this.productService = productService;
+    }*/
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
